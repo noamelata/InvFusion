@@ -74,7 +74,7 @@ def nppc_sampler(net, noise, H=None, y=None, class_labels=None, gnet=None, sigma
     dtype=torch.float32, randn_like=torch.randn_like, noise_level=0.0, return_images=False,
 ):
     b, c, h, w = noise.shape
-    denoised = net(noise.to(dtype) * sigma, torch.ones((1,), dtype=dtype, device=noise.device) * sigma, H=H, y=y, class_labels=class_labels, return_npc=True).to(dtype)
+    denoised = net(noise.to(dtype) * sigma, torch.ones((1,), dtype=dtype, device=noise.device) * sigma, H=H, y=y, class_labels=class_labels, return_nppc=True).to(dtype)
     denoised, nppcs = denoised[:, :c], denoised[:, c:]
     from training.loss import gram_schmidt
     nppcs, norms = gram_schmidt(rearrange(nppcs, 'b (k c) h w -> b k c h w', c=c))

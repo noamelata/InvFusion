@@ -70,7 +70,7 @@ class MSELoss:
         return loss, consistency_loss, 0, 0
 
 
-class NPCLossMSE:
+class NPPCLossMSE:
     def __init__(self, sigma_data=0.5):
         self.sigma_data = sigma_data
 
@@ -80,7 +80,7 @@ class NPCLossMSE:
         noise = torch.randn_like(images) * sigma
         images, aug_cond = augment_pipe(images) if augment_pipe is not None else (images, None)
         y = degradation.H(images) if degradation is not None else None
-        denoised, logvar = net(noise, sigma, degradation, y, aug_cond=aug_cond, return_logvar=True, return_npc=True)
+        denoised, logvar = net(noise, sigma, degradation, y, aug_cond=aug_cond, return_logvar=True, return_nppc=True)
         denoised, nppcs = denoised[:, :c], denoised[:, c:]
         nppcs, norms = gram_schmidt(rearrange(nppcs, 'b (k c) h w -> b k c h w', c=c))
         consistency_loss = 0
@@ -93,9 +93,9 @@ class NPCLossMSE:
         err = err / err_norm
         proj_err_sqr = einsum(err, nppcs, 'b c h w, b k c h w -> b k').pow(2)
         norms = norms / err_norm.reshape(norms.shape[0], 1)
-        npc_loss = (1-proj_err_sqr).sum(-1)
-        npc_norm_loss = (norms.pow(2) - proj_err_sqr.detach()).pow(2).sum(-1)
+        nppc_loss = (1-proj_err_sqr).sum(-1)
+        nppc_norm_loss = (norms.pow(2) - proj_err_sqr.detach()).pow(2).sum(-1)
 
-        return loss, consistency_loss, npc_loss, npc_norm_loss
+        return loss, consistency_loss, nppc_loss, nppc_norm_loss
 
 

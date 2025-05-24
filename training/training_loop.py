@@ -246,7 +246,7 @@ def training_loop(
                     training_stats.report('Loss/consistency_loss', consistency_loss)
                     loss = loss + consistency_loss_weight * consistency_loss.sum() if consistency_loss_weight else loss
                     if nppc_loss_weight > 0:
-                        training_stats.report('Loss/nppcs_loss', nppc_loss / batch_gpu_total)
+                        training_stats.report('Loss/nppc_loss', nppc_loss / batch_gpu_total)
                         training_stats.report('Loss/nppc_norm_loss', nppc_norm_loss / batch_gpu_total)
                         loss = (loss +
                                 nppc_loss_weight * (min(state.cur_nimg / (2 ** 5 * batch_size), 1) ** 2) * nppc_loss.sum() +
