@@ -1,6 +1,6 @@
-# InvFussion: Bridging Supervised and Zero-shot Diffusion for Inverse Problems<br><sub>Official PyTorch implementation</sub>
+# InvFusion: Bridging Supervised and Zero-shot Diffusion for Inverse Problems<br><sub>Official PyTorch implementation</sub>
 
-![Restored Images](./assets/InvFussion_Teaser.png)
+![Restored Images](./assets/InvFusion_Teaser.png)
 
 [Noam Elata*](https://noamelata.github.io/)*, [Hyungjin Chung*](https://hyungjin-chung.github.io/)*, [Jong Chul Ye](https://bispl.weebly.com/professor.html), [Tomer Michali](https://tomer.net.technion.ac.il/), [Michael Elad](https://elad.cs.technion.ac.il/)<br>
 <img src="./assets/arxiv.svg" style="width:16px;">  https://arxiv.org/pdf/2504.01689<br>
@@ -69,7 +69,7 @@ torchrun --standalone --nproc_per_node=<num gpus> train.py    \
       --data-class datautils.<dataset name>.<dataset class>   \
       --ref-path dataset-refs/<ref name>.pkl                  \
       --degradation degradation.RandomDegradation             \
-      --name invfussion
+      --name invfusion
 ```
 Remove the `--degradation` argument to train an unconditional model.
 Add `--blind-train` argument to train a degradation-blind model.
@@ -78,8 +78,8 @@ Use `python train.py -h` to get the list of available arguments.
 ## Citation
 
 ```bibtex
-@article{elata2025invfussion,
-   title    = {InvFussion: Bridging Supervised and Zero-shot Diffusion for Inverse Problems},
+@article{elata2025invfusion,
+   title    = {InvFusion: Bridging Supervised and Zero-shot Diffusion for Inverse Problems},
    author   = {Noam Elata and Hyungjin Chung and Jong Chul Ye and Tomer Michaeli and Michael Elad},
    journal  = {arXiv preprint arXiv:2504.01689},
    year     = {2025}

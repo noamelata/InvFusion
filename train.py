@@ -54,7 +54,7 @@ def print_and_log(run_dir, c):
     dist.print0(json.dumps(c, indent=2))
     dist.print0()
     dist.print0(f'Output directory:        {run_dir}')
-    dist.print0(f'InvFussion:              {c.network_kwargs.joint}')
+    dist.print0(f'InvFusion:              {c.network_kwargs.joint}')
     dist.print0(f'Dataset:                 {c.dataset_kwargs.class_name}')
     dist.print0(f'Number of GPUs:          {dist.get_world_size()}')
     dist.print0(f'Batch size:              {c.batch_size}')
@@ -136,7 +136,7 @@ def launch_training(run_dir, args):
     if dist.get_rank() == 0 and not args.debug and wandb_name:
         try:
             import wandb
-            wandb.init(project="invfussion-train", entity=args.wandb, config=args)
+            wandb.init(project="invfusion-train", entity=args.wandb, config=args)
             wandb.run.log_code(".")
             args.wandb_log = True
         except ImportError:

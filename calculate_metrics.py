@@ -448,7 +448,7 @@ def cmdline():
 @click.option('--num', 'num_images',        help='Number of images to generate', metavar='INT',             type=click.IntRange(min=2), default=50000, show_default=True)
 @click.option('--seed',                     help='Random seed for the first image', metavar='INT',          type=int, default=0, show_default=True)
 @click.option('--batch', 'max_batch_size',  help='Maximum batch size', metavar='INT',                       type=click.IntRange(min=1), default=32, show_default=True)
-@click.option('--blind',                    help='Do not use InvFussion architecture',                      is_flag=True)
+@click.option('--blind',                    help='Do not use InvFusion architecture',                      is_flag=True)
 @click.option('--uncond',                   help='Use an unconditional model',                              is_flag=True)
 
 def gen(net, data, degradation, ref_path, metrics, num_images, seed, **opts):
@@ -484,7 +484,7 @@ def gen(net, data, degradation, ref_path, metrics, num_images, seed, **opts):
 @click.option('--seed',                     help='Random seed for the first image', metavar='INT',          type=int, default=0, show_default=True)
 @click.option('--batch', 'max_batch_size',  help='Maximum batch size', metavar='INT',                       type=click.IntRange(min=1), default=32, show_default=True)
 @click.option('--hyperparams',              help='Hyperparam group for creating model', metavar='STR',      type=str, default="FFHQ_64", show_default=True)
-@click.option('--blind',                    help='Do not use InvFussion architecture',                      is_flag=True)
+@click.option('--blind',                    help='Do not use InvFusion architecture',                      is_flag=True)
 @click.option('--uncond',                   help='Use an unconditional model',                              is_flag=True)
 
 def gen_uncond(net, ref_path, metrics, num_images, seed, **opts):
